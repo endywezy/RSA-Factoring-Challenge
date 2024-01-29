@@ -1,0 +1,33 @@
+#!/usr/bin/python3
+from sys import argv
+
+def is_prime(n):
+    if n < 2:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+def factorize(num):
+    print("{:d}=".format(num), end="")
+    if num % 2 == 0:
+        print("{}*2".format(num//2))
+        return
+    for i in range(3, num, 2):
+        if num % i == 0:
+            factor = num//i
+            if is_prime(factor) and is_prime(i):
+                print("{}*{}".format(factor, i))
+                return
+
+if __name__ == "__main__":
+    numbers = [
+        4, 12, 34, 128, 1024, 4958, 
+        1718944270642558716715, 9, 99, 999, 
+        9999, 9797973, 49, 239809320265259
+    ]
+
+    for num in numbers:
+        factorize(num)
+
